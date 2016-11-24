@@ -1,0 +1,14 @@
+<ion-view hasHeader view-title="Search">
+  <ion-content>
+    <ion-list>
+     <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="Quem está buscando?" ng-model="inputsearch.value" required> 
+        </label>
+        <button ng-click="buscar(inputsearch)" class="button button-small" ng-disabled="inputsearch.$invalid">
+              Buscar
+        </button>
+      </div>
+    </ion-list>
+  </ion-content>
+</ion-view>

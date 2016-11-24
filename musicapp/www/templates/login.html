@@ -1,0 +1,29 @@
+<ion-view view-title="Login">
+    <ion-content class="padding">
+        <div class="list">
+            <img src="img/logo1.png" class="logo">
+            <div class="logoText">
+                MusicApp
+            </div>
+        </div>
+        <div class="list card padding">
+            <label class="item item-input">
+                <span class="input-label">Email</span>
+                <input type="text" ng-model="creds.email" REQUIRED>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Password</span>
+                <input type="password" ng-model="creds.password" REQUIRED>
+            </label>
+            <button ng-click="doLoginAction(creds)" class="button button-block button-positive activated">
+                Logar
+            </button>
+              <button class="button button-block button-assertive" ng-click="cadastro()">
+                Criar Conta
+            </button>
+            
+        </div>
+       
+        
+    </ion-content>
+</ion-view>

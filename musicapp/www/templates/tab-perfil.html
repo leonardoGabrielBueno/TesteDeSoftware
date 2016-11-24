@@ -1,0 +1,45 @@
+<ion-view hasHeader view-title="Perfil">
+  <ion-nav-buttons>
+   
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+       
+      <div  class="item item-input-inset">
+       <img ng-src="{{users.foto}}" ng-click="editarFoto()" style="width: 64px; height: 64px"><br/>
+       <h2>     {{users.nome}}</h2>   
+      </div>
+        <button class="button button-block button-assertive" ng-click="editarNome()">
+                Editar Nome
+        </button>
+        <div>
+            <h4>Quem sou:</h4>
+            <p>{{users.descricao}}</p>
+            <button class="button button-block button-assertive" ng-click="editarDescricao()">
+                Editar Descrição
+             </button>
+            <hr/>
+            <h4>Experiencias:</h4>
+            <p>{{users.experiencias}}</p>
+            <button class="button button-block button-assertive" ng-click="editarExperiencias()">
+                Editar Experiencias
+            </button>
+            <hr/>
+            <h4>Instrumentos & Equipamentos:</h4>
+            <p>{{users.instrumento}}</p>
+            <button class="button button-block button-assertive" ng-click="editarInstrumento()">
+                Editar Instrumentos
+             </button>
+            <h4>Meu Ultimo Trabalho:</h4>
+            <iframe width="360" height="300" ng-src="{{users.youtube}}" frameborder="0" allowfullscreen></iframe>
+            <button class="button button-block button-assertive" ng-click="editarUltimoTrabalho()">
+                Editar Ultimo Trabalho
+             </button>
+        </div>
+      
+             
+    </ion-list>
+
+  </ion-content>
+
+</ion-view>

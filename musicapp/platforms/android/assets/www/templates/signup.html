@@ -1,0 +1,21 @@
+<ion-view view-title="Crie sua conta!">
+    <ion-header-bar class="bar bar-header bar-positive">
+    </ion-header-bar>
+    <ion-content class="padding">
+        <div class="list">
+            <label class="item item-input">
+                <span class="input-label">Endereço de E-mail</span>
+                <input ng-model="creds.email" type="text">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Senha</span>
+                <input ng-model="creds.password" type="password">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Nome</span>
+                <input ng-model="creds.displayName" type="text">
+            </label>
+            <button class="button button-full button-positive" ng-click="doCreateUserAction(creds)">Criar</button>
+        </div>
+    </ion-content>
+</ion-view>

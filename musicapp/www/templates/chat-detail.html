@@ -1,0 +1,33 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view view-title="Perfis">
+  <ion-content class="padding">
+    <ion-list>
+       
+      <div  class="item item-input-inset">
+       <img ng-src="{{users.foto}}" style="width: 64px; height: 64px">
+       <h2>{{users.nome}}</h2>
+      </div>
+        <div>
+            <h4>Quem sou:</h4>
+            <p>{{users.descricao}}</p>
+            <hr/>
+            <h4>Experiencias:</h4>
+            <p>{{users.experiencias}}</p>
+            <hr/>
+            <h4>Instrumentos & Equipamentos:</h4>
+            <p>{{users.instrumento}}</p>
+            <hr/>
+            <h4>Meu Ultimo Trabalho:</h4>
+            <iframe width="360" height="300" ng-src="{{users.youtube}}" frameborder="0" allowfullscreen></iframe>
+      
+        </div>
+      
+             
+    </ion-list>
+  </ion-content>
+</ion-view>
