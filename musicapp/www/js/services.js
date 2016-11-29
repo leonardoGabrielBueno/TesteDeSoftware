@@ -242,7 +242,7 @@ angular.module('starter.services', [])
           console.log(snapshot.val());
           var res = []
           snapshot.forEach(function (_item) {
-            res.unshift({ player: _item.val().player, message: _item.val().message, id:_item.val().player_uid })
+            res.unshift({ player: _item.val().player, message: _item.val().message, user_id:_item.val().player_uid, id:_item.key  })
           })
        
           // send updated data back to controller..
@@ -283,4 +283,22 @@ angular.module('starter.services', [])
         });
       }
     };
-  });
+  })
+.filter('searchContacts', function(FirebaseDB){
+    var refs = FirebaseDB.database().ref('Users/');
+    return function (refs, query) {
+    var filtered = [];
+    var letterMatch = new RegExp(query, 'i');
+    for (var i = 0; i < refs.length; i++) {
+      var ref = refs[i];
+      if (query) {
+        if (letterMatch.test(ref.nome.substring(0, query.length))) {
+          filtered.push(ref);
+        }
+      } else {
+        filtered.push(ref);
+      }
+    }
+    return filtered;
+  };
+});

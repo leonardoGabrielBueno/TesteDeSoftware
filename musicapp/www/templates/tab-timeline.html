@@ -14,14 +14,16 @@
               Postar
         </button>
       </div>
-      <ion-item class="item-remove-animate item-avatar item-icon-right item-text-wrap" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/timeline/{{chat.id}}">
+      <ion-item class="item-remove-animate item-avatar item-icon-right item-text-wrap" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/timeline/{{chat.user_id}}">
         <img ng-src="img/chat_icon.png">
   
         <h2>{{chat.player}}</h2>
         <p class="" >{{chat.message}}</p>
+               
+
         <i class="icon ion-chevron-right icon-accessory"></i>
 
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
+        <ion-option-button class="button-assertive" ng-click="remove(chat.id)">
           Delete
         </ion-option-button>
       </ion-item>

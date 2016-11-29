@@ -308,7 +308,9 @@ angular.module('starter.controllers', [])
         }
       })}
      $scope.mudarFoto = function (_credentials) {
-          
+         $scope.files = _credentials;
+         
+         
        Perfil.updateFoto(_credentials).then(function (_credentials, _error) {
         if (!_error) {
           alert("Foto Alterada com Sucesso!");
@@ -356,9 +358,13 @@ angular.module('starter.controllers', [])
 
   })
 
-  .controller('SearchCtrl', function ($scope) {
-    $scope.settings = {
-      enableFriends: true
-    };
+ 
+    .controller('SearchCtrl', function ($scope, $stateParams, Chats, Users, $timeout, $sce, $ionicScrollDelegate) {
+    
+        $scope.contacts = Users.CONTACTS;
+  
+        $scope.clearSearch = function() {
+          $scope.search = '';
+        };
     
   });

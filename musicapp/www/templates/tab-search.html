@@ -1,14 +1,22 @@
 <ion-view hasHeader view-title="Search">
-  <ion-content>
-    <ion-list>
-     <div class="item item-input-inset">
-        <label class="item-input-wrapper">
-          <input type="text" placeholder="Quem está buscando?" ng-model="inputsearch.value" required> 
-        </label>
-        <button ng-click="buscar(inputsearch)" class="button button-small" ng-disabled="inputsearch.$invalid">
-              Buscar
-        </button>
+    <ion-header-bar class="bar-light bar-subheader">
+      <input type="search"
+        placeholder="Filter contacts..."
+        ng-model="search">
+      <button ng-if="search.length"
+        class="button button-icon ion-android-close input-button"
+        ng-click="clearSearch()">
+      </button>
+    </ion-header-bar>
+    <ion-content>
+    <div class="list">
+        <a class="item my-item"
+          collection-repeat="item in contacts | orderBy:'first_name' | searchContacts:search"
+          collection-item-height="60"
+          collection-item-width="'100%'">
+          <img ng-src="http://placekitten.com/60/{{55 + ($index % 10)}}">
+          {{ref.nome}}
+        </a>
       </div>
-    </ion-list>
-  </ion-content>
+    </ion-content>
 </ion-view>
