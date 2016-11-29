@@ -11,11 +11,11 @@
     <ion-content>
     <div class="list">
         <a class="item my-item"
-          collection-repeat="item in contacts | orderBy:'first_name' | searchContacts:search"
+          collection-repeat="item in contacts | orderBy:'nome' | searchContacts:search"
           collection-item-height="60"
           collection-item-width="'100%'">
-          <img ng-src="http://placekitten.com/60/{{55 + ($index % 10)}}">
-          {{ref.nome}}
+          <img ng-src="{{item.foto}}">
+          {{item.nome}}
         </a>
       </div>
     </ion-content>

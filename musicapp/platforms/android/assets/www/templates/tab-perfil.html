@@ -1,0 +1,30 @@
+<ion-view hasHeader view-title="Perfil">
+  <ion-nav-buttons>
+   
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+       
+      <div  class="item item-input-inset">
+       <img ng-src="" style="width: 64px; height: 64px">
+       <h2>{{users.nome}}</h2>
+      </div>
+        <div>
+            <h4>Quem sou:</h4>
+            <p>{{users.descricao}}</p>
+            <hr/>
+            <h4>Experiencias:</h4>
+            <p>{{users.experiencias}}</p>
+            <hr/>
+            <h4>Instrumentos & Equipamentos:</h4>
+            <p>{{users.instrumento}}</p>
+        </div>
+        <button class="button button-block button-assertive" ng-click="editar()">
+                Editar
+        </button>
+             
+    </ion-list>
+
+  </ion-content>
+
+</ion-view>

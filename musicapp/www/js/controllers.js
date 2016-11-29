@@ -359,10 +359,20 @@ angular.module('starter.controllers', [])
   })
 
  
-    .controller('SearchCtrl', function ($scope, $stateParams, Chats, Users, $timeout, $sce, $ionicScrollDelegate) {
-    
-        $scope.contacts = Users.CONTACTS;
+    .controller('SearchCtrl', function ($scope, $stateParams, Users, $timeout, $ionicScrollDelegate) {
+        
+        Users.get(function (_data) {
+        $timeout(function () {
+          $scope.contacts = _data;
+         
+          
+        }, 1);
+      });
   
+                
+                
+                
+         
         $scope.clearSearch = function() {
           $scope.search = '';
         };

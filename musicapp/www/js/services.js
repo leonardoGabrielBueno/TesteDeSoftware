@@ -284,19 +284,19 @@ angular.module('starter.services', [])
       }
     };
   })
-.filter('searchContacts', function(FirebaseDB){
-    var refs = FirebaseDB.database().ref('Users/');
-    return function (refs, query) {
+.filter('searchContacts', function(){
+  
+    return function (items, query) {
     var filtered = [];
     var letterMatch = new RegExp(query, 'i');
-    for (var i = 0; i < refs.length; i++) {
-      var ref = refs[i];
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
       if (query) {
-        if (letterMatch.test(ref.nome.substring(0, query.length))) {
-          filtered.push(ref);
+        if (letterMatch.test(item.nome.substring(0, query.length))) {
+          filtered.push(item);
         }
       } else {
-        filtered.push(ref);
+        filtered.push(item);
       }
     }
     return filtered;

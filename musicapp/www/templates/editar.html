@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<ion-view view-title="Editar o Perfil">
+    <ion-header-bar class="bar bar-header bar-positive">
+    </ion-header-bar>
+    <ion-content class="padding">
+        <div class="list">
+            <label class="item item-input">
+                <span class="input-label">Nome</span>
+                <input ng-model="creds.nome" type="text">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Descrição</span>
+                <input ng-model="creds.descricao" type="text">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Instrumentos</span>
+                <input ng-model="creds.instrumentos" type="text">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Experiencias</span>
+                <input ng-model="creds.experiencias" type="text">
+            </label>
+            <button class="button button-full button-positive" ng-click="editarUsuario(creds)">Salvar</button>
+        </div>
+             </label>
+            <button class="button button-full button-positive" ng-click="voltar()">Voltar</button>
+        </div>
+    </ion-content>
+</ion-view>
