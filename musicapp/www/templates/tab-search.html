@@ -1,22 +1,20 @@
 <ion-view hasHeader view-title="Search">
-    <ion-header-bar class="bar-light bar-subheader">
-      <input type="search"
-        placeholder="Filter contacts..."
-        ng-model="search">
-      <button ng-if="search.length"
-        class="button button-icon ion-android-close input-button"
-        ng-click="clearSearch()">
+  <ion-content>
+    <ion-list>
+      <div class="item item-input-inset">
+         <label class="item-input-wrapper">
+          <input type="search" placeholder="Filter contact..." ng-model="search"/>
+        </label>
+         <button ng-if="search.length" class="button button-icon ion-android-close input-button" ng-click="clearSearch()">
       </button>
-    </ion-header-bar>
-    <ion-content>
-    <div class="list">
-        <a class="item my-item"
-          collection-repeat="item in contacts | orderBy:'nome' | searchContacts:search"
-          collection-item-height="60"
-          collection-item-width="'100%'">
-          <img ng-src="{{item.foto}}">
-          {{item.nome}}
-        </a>
       </div>
-    </ion-content>
+      <ion-item class="item-remove-animate item-avatar item-icon-right item-text-wrap" type="item-text-wrap" collection-repeat="item in contacts|orderBy:'nome'|filter:search" no item e ng-model="search.nome" href="#/tab/timeline/{{item.id}}">
+        <img ng-src="{{item.foto}}">
+  
+        <h2>{{item.nome}}</h2>
+
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
 </ion-view>

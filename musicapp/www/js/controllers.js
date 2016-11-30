@@ -234,7 +234,7 @@ angular.module('starter.controllers', [])
     // start here..
   
   })
-    .controller('PerfilCtrl', function ($scope, $stateParams, FirebaseDB, $state, Perfil, $timeout, $sce) {
+    .controller('PerfilCtrl', function ($scope, $stateParams, FirebaseDB, $state, Perfil, $timeout, $sce, $cordovaCamera, FilesService, $ionicLoading) {
     $scope.editarFoto = function(){
            $state.go('editarFoto', {})}
     $scope.voltar = function(){
@@ -249,6 +249,29 @@ angular.module('starter.controllers', [])
            $state.go('editarInstrumento', {})}
     $scope.editarUltimoTrabalho = function(){
            $state.go('editarUltimoTrabalho', {})}
+       
+      
+    $scope.upload = function() {
+       var options = {
+            quality : 75,
+            destinationType : Camera.DestinationType.DATA_URL,
+            sourceType : Camera.PictureSourceType.CAMERA,
+            allowEdit : true,
+            encodingType: Camera.EncodingType.JPEG,
+            popoverOptions: CameraPopoverOptions,
+            targetWidth: 500,
+            targetHeight: 500,
+            saveToPhotoAlbum: false
+        };
+        alert("cu");
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+            syncArray.$add({image: imageData}).then(function() {
+                alert("Image has been uploaded");
+            });
+        }, function(error) {
+            console.error(error);
+        });
+    }
        
    
     $scope.mudarNome = function (_credentials) {
@@ -308,7 +331,7 @@ angular.module('starter.controllers', [])
         }
       })}
      $scope.mudarFoto = function (_credentials) {
-         $scope.files = _credentials;
+       /*  $scope.files = _credentials;
          
          
        Perfil.updateFoto(_credentials).then(function (_credentials, _error) {
@@ -321,8 +344,28 @@ angular.module('starter.controllers', [])
           }, 1);
         }else{
              alert("Erro ao alterar Foto!");
+        }*/
+     $scope.files = FilesService.all();
+    $scope.onUpload = onUpload;
+    $scope.localUpload = localUpload;
+
+    function localUpload(value){
+        if (!value){
+            return;
         }
-      })}
+        // TODO - create directive
+        $ionicLoading.show();
+        filepicker.store(
+            value,
+            onUpload
+        );
+    }
+    function onUpload(data){
+        FilesService.add(data);
+        $ionicLoading.hide();
+        $state.go('tab.perfil');
+    }  
+      }
      $scope.mudarUltimoTrabalho = function (_credentials) {
           
        Perfil.updateUltimoTrabalho(_credentials).then(function (_credentials, _error) {
@@ -361,7 +404,7 @@ angular.module('starter.controllers', [])
  
     .controller('SearchCtrl', function ($scope, $stateParams, Users, $timeout, $ionicScrollDelegate) {
         
-        Users.get(function (_data) {
+        Users.all(function (_data) {
         $timeout(function () {
           $scope.contacts = _data;
          
@@ -377,4 +420,43 @@ angular.module('starter.controllers', [])
           $scope.search = '';
         };
     
-  });
+  })
+.controller("SecureController", function($scope, $ionicHistory, $firebaseArray, $cordovaCamera, Camera) {
+/*     var fbAuth = $firebaseAuth(fb);
+     
+    $ionicHistory.clearHistory();
+
+    $scope.images = [];
+
+    var fbAuth = fb.getAuth();
+    if(fbAuth) {
+        var userReference = fb.child("users/" + fbAuth.uid);
+        var syncArray = $firebaseArray(userReference.child("images"));
+        $scope.images = syncArray;
+    } else {
+        $state.go("firebase");
+    }
+*/
+    $scope.upload = function() {
+        var options = {
+            quality : 75,
+            destinationType : Camera.DestinationType.DATA_URL,
+            sourceType : Camera.PictureSourceType.CAMERA,
+            allowEdit : true,
+            encodingType: Camera.EncodingType.JPEG,
+            popoverOptions: CameraPopoverOptions,
+            targetWidth: 500,
+            targetHeight: 500,
+            saveToPhotoAlbum: false
+        };
+    
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+            syncArray.$add({image: imageData}).then(function() {
+                alert("Image has been uploaded");
+            });
+        }, function(error) {
+            console.error(error);
+        });
+    }
+
+});

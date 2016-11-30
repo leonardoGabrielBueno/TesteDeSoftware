@@ -258,8 +258,21 @@ angular.module('starter.services', [])
     // Might use a resource here that returns a JSON array
 
     return {
-      all: function () {
-        return null;
+  
+        all: function(_handler) {
+                var ref = FirebaseDB.database().ref('Users/');
+                ref.on("value", function(snapshot) {
+                    var res = [];
+                    snapshot.forEach(function(_item) {
+                        var o = _item.val();
+                        o.id = _item.key;
+                        res.push(o);
+                    })
+                    _handler(res);
+
+                }, function(errorObject) {
+                    console.log("The read failed: " + errorObject.code);
+                });
       },
 
       get: function (_selectedChat, _handler) {
@@ -284,21 +297,46 @@ angular.module('starter.services', [])
       }
     };
   })
-.filter('searchContacts', function(){
-  
-    return function (items, query) {
-    var filtered = [];
-    var letterMatch = new RegExp(query, 'i');
-    for (var i = 0; i < items.length; i++) {
-      var item = items[i];
-      if (query) {
-        if (letterMatch.test(item.nome.substring(0, query.length))) {
-          filtered.push(item);
-        }
-      } else {
-        filtered.push(item);
-      }
-    }
-    return filtered;
-  };
+  .service('FilesService', function(FirebaseDB) {
+
+	var files = [{
+		id: 1,
+		url: "https://www.filepicker.io/api/file/KIf6LZf4Q9KemVQHntul", 
+		filename: "Npm_logo.png", 
+		mimetype: "image/png", 
+		size: 343, 
+	},
+	{
+		id: 2,
+		url: "https://www.filepicker.io/api/file/8RVUaFTkTni7344XdVuo", 
+		filename: "filepicker_logo.png", 
+		mimetype: "image/png", 
+		size: 37913
+	}
+	];
+
+
+	return {
+		all: function() {
+			return files;
+		},
+		add: function(data){
+			
+			data.id = files[files.length-1].id + 1;
+	                var ref = FirebaseDB.database().ref('Users/'+FirebaseDB.currentUser().uid);
+                        ref.push({'foto': data.id});
+                        alert("ass");
+		},
+		remove: function(chat) {
+			files.splice(files.indexOf(chat), 1);
+		},
+		get: function(fileId) {
+			return files.filter(function(item){
+				return item.id === fileId;
+			})[0];
+		}
+	};
 });
+
+
+

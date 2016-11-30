@@ -1,8 +1,9 @@
 {
-  "name": "golftalk",
+  "name": "MusicApp",
   "version": "1.1.1",
-  "description": "golfTalk: An Ionic project",
+  "description": "MusicApp: An Ionic project",
   "dependencies": {
+    "filepicker-js": "^2.4.18",
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",
